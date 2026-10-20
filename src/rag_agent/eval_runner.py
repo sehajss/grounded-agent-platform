@@ -72,4 +72,3 @@ def run_retrieval_evaluation(
         summary=summarize_metrics(metric_rows),
         questions=tuple(details),
     )
-```
