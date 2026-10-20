@@ -1,0 +1,50 @@
+- id: dependency-injection
+  question: How does FastAPI dependency injection work?
+  expected_sources:
+    - docs/en/docs/tutorial/dependencies/index.md
+
+- id: async-endpoints
+  question: When should a FastAPI path operation use async def versus def?
+  expected_sources:
+    - docs/en/docs/async.md
+    - docs/en/docs/tutorial/first-steps.md
+
+- id: path-parameters
+  question: How do you declare and validate a path parameter?
+  expected_sources:
+    - docs/en/docs/tutorial/path-params.md
+
+- id: request-body
+  question: How does FastAPI use Pydantic models to read and validate a request body?
+  expected_sources:
+    - docs/en/docs/tutorial/body.md
+
+- id: response-model
+  question: What does response_model do, and how does it affect returned data?
+  expected_sources:
+    - docs/en/docs/tutorial/response-model.md
+
+- id: oauth2-jwt
+  question: How does the FastAPI tutorial authenticate users with OAuth2 and JWT?
+  expected_sources:
+    - docs/en/docs/tutorial/security/oauth2-jwt.md
+
+- id: cors
+  question: How do you configure CORS in a FastAPI application?
+  expected_sources:
+    - docs/en/docs/tutorial/cors.md
+
+- id: middleware
+  question: How do you add middleware to a FastAPI application?
+  expected_sources:
+    - docs/en/docs/tutorial/middleware.md
+
+- id: file-uploads
+  question: How do you accept uploaded files in a FastAPI endpoint?
+  expected_sources:
+    - docs/en/docs/tutorial/request-files.md
+
+- id: testing
+  question: How do you test a FastAPI application using TestClient?
+  expected_sources:
+    - docs/en/docs/tutorial/testing.md

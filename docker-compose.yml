@@ -1,0 +1,46 @@
+services:
+  db:
+    ports:
+      - "5433:5432"
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: grounded_agent
+      POSTGRES_USER: grounded_agent
+      POSTGRES_PASSWORD: grounded_agent
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U grounded_agent -d grounded_agent"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  api:
+    build: .
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://grounded_agent:grounded_agent@db:5432/grounded_agent
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command:
+      - /bin/sh
+      - -c
+      - alembic upgrade head && uvicorn rag_agent.api:app --host 0.0.0.0 --port 8000
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  postgres_data:
